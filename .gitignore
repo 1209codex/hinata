@@ -1,0 +1,89 @@
+# Environment
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+.Python
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Cache
+data/cache/*
+!data/cache/.gitkeep
+
+# Backups
+backups/*
+!backups/.gitkeep
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Distribution
+dist/
+build/
+*.whl
+
+# Antigravity CLI metadata
+.ua/
+
+# ── Security: Android Signing ──────────────────────────────────────────────
+# NEVER commit keystores, signing keys, or APK release artifacts.
+# Use CI/CD environment variables instead.
+*.jks
+*.keystore
+*.p12
+*.pfx
+flutter_app/android/keystore/
+android/*/keystore/
+
+# ── Release Artifacts ───────────────────────────────────────────────────────
+# APKs and AABs are build outputs — never commit them.
+# Use GitHub Releases or CI/CD artifact storage.
+*.apk
+*.aab
+web/*.apk
+web/*.aab
+
+# ── Flutter ─────────────────────────────────────────────────────────────────
+flutter_app/.dart_tool/
+flutter_app/.flutter-plugins
+flutter_app/.flutter-plugins-dependencies
+flutter_app/build/
+flutter_app/.packages
