@@ -20,7 +20,9 @@ _HINGLISH_MARKERS: set[str] = {
     "ho", "hain", "hum", "tum", "aap", "mera", "tera", "kaise",
     "kahan", "kab", "kaun", "kitna", "itna", "wala", "wali",
     "chahiye", "sakta", "sakte", "raha", "rahi", "rahe",
-    "bahut", "thoda", "thodi", "sahi", "galat",
+    "bahut", "thoda", "thodi", "sahi", "galat", "yaar", "baba",
+    "suno", "khana", "sacchi", "hayee", "nautanki", "drama",
+    "pakka", "sweetu", "shona", "dhyan", "khaya", "pagal",
 }
 
 
