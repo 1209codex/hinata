@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hinata 🌸 Companion AI</title>
+
+  <!-- Google Fonts: Google Sans / Outfits / Inter & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Google Stitch Sidebar / Navigation Rail -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">🌸</div>
+        <div class="brand-text">
+          <h1>Hinata</h1>
+          <span class="subtitle">Companion AI</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="chat">
+          <span class="material-symbols-outlined">chat_bubble</span>
+          <span class="nav-label">Companion Chat</span>
+        </button>
+        <button class="nav-item" data-tab="memory">
+          <span class="material-symbols-outlined">database</span>
+          <span class="nav-label">Memory Vault</span>
+        </button>
+        <button class="nav-item" data-tab="productivity">
+          <span class="material-symbols-outlined">check_box</span>
+          <span class="nav-label">Productivity</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <span class="material-symbols-outlined">tune</span>
+          <span class="nav-label">Brain Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <span class="material-symbols-outlined">account_circle</span>
+          <div class="user-info">
+            <span class="user-name">Local User</span>
+            <span class="user-mode">Single-User Mode</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <h2 id="page-title">Companion Chat</h2>
+          <div class="companion-status">
+            <span class="status-indicator online"></span>
+            <span id="health-status">Healthy</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Brain Emotion / Mood State Badge -->
+          <div class="mood-badge" id="companion-mood-badge">
+            <span class="material-symbols-outlined">sentiment_satisfied</span>
+            <span id="mood-text">Attuned</span>
+          </div>
+          <div class="provider-pill" id="active-provider-pill">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <span id="provider-name">Groq</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW PANELS -->
+      <div class="view-container">
+        
+        <!-- 1. CHAT PANEL -->
+        <section class="view-panel active" id="chat-panel">
+          <div class="chat-wrapper">
+            <div class="chat-messages" id="chat-messages">
+              <!-- Welcome banner message -->
+              <div class="message assistant-msg">
+                <div class="avatar">🌸</div>
+                <div class="message-content">
+                  <div class="message-header">
+                    <span class="sender-name">Hinata</span>
+                    <span class="time-stamp">Just now</span>
+                  </div>
+                  <div class="text">
+                    Hello! I'm Hinata, your personal companion AI. How can I help you today?
+                  </div>
+                  <div class="emotion-tags">
+                    <span class="tag mood-tag">Warm</span>
+                    <span class="tag feeling-tag">Attuned</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div class="quick-chips">
+              <button class="chip-btn" onclick="sendQuickPrompt('How are you feeling right now?')">🌸 How are you feeling?</button>
+              <button class="chip-btn" onclick="sendQuickPrompt('What remember facts do you have about me?')">💾 Recall my memories</button>
+              <button class="chip-btn" onclick="sendQuickPrompt('List my active tasks for today')">📅 Show my tasks</button>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="chat-input-container">
+              <div class="input-card">
+                <button class="icon-btn voice-btn" id="voice-record-btn" title="Voice Input">
+                  <span class="material-symbols-outlined">mic</span>
+                </button>
+                <textarea id="chat-input" placeholder="Type a message or press mic for voice..." rows="1"></textarea>
+                <button class="icon-btn send-btn" id="chat-send-btn" title="Send Message">
+                  <span class="material-symbols-outlined">send</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. MEMORY VAULT PANEL -->
+        <section class="view-panel" id="memory-panel">
+          <div class="panel-header">
+            <div>
+              <h3>Long-Term Memory Vault</h3>
+              <p class="section-desc">Vector-indexed relational memories with automatic decay management.</p>
+            </div>
+            <button class="btn btn-primary" id="open-add-memory-btn">
+              <span class="material-symbols-outlined">add</span>
+              Add Memory Fact
+            </button>
+          </div>
+
+          <!-- Memory Search Bar -->
+          <div class="search-box">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="memory-search-input" placeholder="Search memory facts by keywords or similarity...">
+            <button class="btn btn-secondary" id="memory-search-btn">Search</button>
+          </div>
+
+          <!-- Memory Facts Grid -->
+          <div class="memory-grid" id="memory-facts-grid">
+            <div class="empty-state">
+              <span class="material-symbols-outlined">inventory_2</span>
+              <p>Loading memory facts...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. PRODUCTIVITY PANEL -->
+        <section class="view-panel" id="productivity-panel">
+          <div class="productivity-tabs">
+            <button class="prod-tab-btn active" data-subtab="tasks">Tasks</button>
+            <button class="prod-tab-btn" data-subtab="events">Schedule Events</button>
+            <button class="prod-tab-btn" data-subtab="goals">Target Goals</button>
+          </div>
+
+          <!-- Subtab: Tasks -->
+          <div class="subtab-content active" id="tasks-subtab">
+            <div class="panel-header">
+              <h3>Action Tasks</h3>
+              <button class="btn btn-primary" id="add-task-btn">
+                <span class="material-symbols-outlined">add_task</span>
+                New Task
+              </button>
+            </div>
+            <div class="task-list" id="task-items-list">
+              <div class="empty-state">Loading tasks...</div>
+            </div>
+          </div>
+
+          <!-- Subtab: Events -->
+          <div class="subtab-content" id="events-subtab">
+            <div class="panel-header">
+              <h3>Upcoming Events</h3>
+              <button class="btn btn-primary" id="add-event-btn">
+                <span class="material-symbols-outlined">event</span>
+                New Event
+              </button>
+            </div>
+            <div class="events-list" id="event-items-list">
+              <div class="empty-state">Loading events...</div>
+            </div>
+          </div>
+
+          <!-- Subtab: Goals -->
+          <div class="subtab-content" id="goals-subtab">
+            <div class="panel-header">
+              <h3>Target Goals</h3>
+              <button class="btn btn-primary" id="add-goal-btn">
+                <span class="material-symbols-outlined">flag</span>
+                New Goal
+              </button>
+            </div>
+            <div class="goals-grid" id="goal-items-grid">
+              <div class="empty-state">Loading goals...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. BRAIN SETTINGS PANEL -->
+        <section class="view-panel" id="settings-panel">
+          <div class="settings-layout">
+            
+            <div class="settings-card">
+              <div class="card-header">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <h3>AI Provider & Model Settings</h3>
+              </div>
+              <div class="form-group">
+                <label for="setting-provider">Active LLM Provider</label>
+                <select id="setting-provider" class="form-select">
+                  <option value="groq">Groq (Default - High Speed)</option>
+                  <option value="openai">OpenAI</option>
+                  <option value="gemini">Google Gemini</option>
+                  <option value="openrouter">OpenRouter</option>
+                  <option value="opencode">OpenCode Zen</option>
+                  <option value="bytez">Bytez</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="setting-model">Model Name</label>
+                <input type="text" id="setting-model" class="form-input" placeholder="e.g. llama-3.3-70b-versatile">
+              </div>
+              <div class="form-group">
+                <label for="setting-temperature">Temperature: <span id="temp-val">0.7</span></label>
+                <input type="range" id="setting-temperature" min="0" max="1" step="0.05" value="0.7">
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="card-header">
+                <span class="material-symbols-outlined">psychology</span>
+                <h3>Personality & Prompt Tuning</h3>
+              </div>
+              <div class="form-group">
+                <label for="setting-system-prompt">System Prompt</label>
+                <textarea id="setting-system-prompt" class="form-textarea" rows="4" placeholder="System instructions for Hinata..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="setting-personality">Personality Mode</label>
+                <select id="setting-personality" class="form-select">
+                  <option value="default">Default Companion</option>
+                  <option value="warm">Warm & Supportive</option>
+                  <option value="playful">Playful & Cheerful</option>
+                  <option value="analytical">Analytical & Focused</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" id="save-settings-btn">
+                <span class="material-symbols-outlined">save</span>
+                Save Configurations
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Memory Modal -->
+  <div class="modal" id="add-memory-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Long-Term Memory</h3>
+        <button class="close-modal-btn" id="close-memory-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="memory-fact-text">Memory Fact</label>
+          <textarea id="memory-fact-text" class="form-textarea" placeholder="e.g. User likes green tea and works on AI software projects." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="memory-category">Category</label>
+          <input type="text" id="memory-category" class="form-input" placeholder="personal, preference, work, etc.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancel-memory-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-memory-btn">Save Fact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div class="modal" id="add-task-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>New Action Task</h3>
+        <button class="close-modal-btn" id="close-task-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="task-title-input">Task Title</label>
+          <input type="text" id="task-title-input" class="form-input" placeholder="e.g. Review backend API pull request">
+        </div>
+        <div class="form-group">
+          <label for="task-priority-input">Priority</label>
+          <select id="task-priority-input" class="form-select">
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancel-task-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-task-btn">Create Task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

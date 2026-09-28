@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from contextlib import asynccontextmanager
 import logging
 import sys
@@ -48,8 +50,18 @@ app.include_router(memory_router, prefix="/api/v1/memory", tags=["memory"])
 app.include_router(settings_router, prefix="/api/v1/settings", tags=["settings"])
 app.include_router(ws_router, tags=["websocket"])
 app.include_router(voice_router, prefix="/api/v1/voice", tags=["voice"])
+app.include_router(productivity_router, prefix="/api/v1/productivity", tags=["productivity"])
+
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
 
-app.include_router(productivity_router, prefix="/api/v1/productivity", tags=["productivity"])
+# Mount Google Stitch Material 3 Web UI
+web_dir = ROOT / "web"
+if web_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(web_dir)), name="static")
+
+    @app.get("/", include_in_schema=False)
+    async def serve_ui():
+        return FileResponse(web_dir / "index.html")
+

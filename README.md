@@ -8,6 +8,7 @@ Hinata is a lightweight, high-performance companion AI backend built on FastAPI 
 
 ## 🌟 Key Highlights
 
+- 🎨 **Google Stitch Web UI** — Modern, responsive Material 3 dashboard interface for interactive chat, voice recognition, memory vault management, productivity tracking, and AI brain settings.
 - 🧠 **Relational AI Core** — Houses feeling classification, defense detection, mood shifts, and personality styling under a unified personal AI brain.
 - 💾 **Long-Term Memory & Context** — Automatically manages fact retrieval, decay, and decay-aware search queries.
 - ⚡ **6 AI LLM Providers** — Supports Groq, OpenCode Zen, OpenAI, Gemini, OpenRouter, and Bytez with zero-downtime failover logic.
@@ -21,6 +22,7 @@ Hinata is a lightweight, high-performance companion AI backend built on FastAPI 
 
 | Component | Technology |
 |---|---|
+| **Frontend UI** | Google Stitch / Material 3 Web Interface (HTML5, CSS3, ES6 JavaScript) |
 | **Backend Framework** | Python 3.12+ (FastAPI) |
 | **Server** | Uvicorn |
 | **Database** | SQLite via SQLAlchemy 2.0 (Async Engine & aiosqlite) |
@@ -87,6 +89,7 @@ Once the server is running on `http://localhost:2027`:
 
 | Resource | URL | Description |
 |---|---|---|
+| **Google Stitch Web UI** | `http://localhost:2027/` | Interactive Web Dashboard (Chat, Memory, Productivity, Settings) |
 | **Health Check** | `http://localhost:2027/health` | Service status check (`{"status": "healthy"}`) |
 | **Swagger UI Docs** | `http://localhost:2027/docs` | Interactive API documentation |
 | **ReDoc UI Docs** | `http://localhost:2027/redoc` | OpenAPI documentation |
@@ -109,6 +112,10 @@ PYTHONPATH=backend:backend/app:. pytest tests/backend
 
 ```text
 Hinata/
+├── web/                         # Google Stitch Material 3 Web Interface
+│   ├── index.html               # Main dashboard HTML template
+│   ├── styles.css               # Material 3 Stitch styling & themes
+│   └── app.js                   # Interactive client logic & API bindings
 ├── backend/
 │   ├── app/
 │   │   ├── main.py              # FastAPI server setup & routing
